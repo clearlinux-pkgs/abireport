@@ -1,5 +1,5 @@
 PKG_NAME := abireport
-URL := https://github.com/clearlinux/abireport/releases/download/v1.0.5/abireport-1.0.5.tar.gz
-
+URL = https://github.com/clearlinux/abireport/releases/download/v1.0.5/abireport-1.0.5.tar.gz
+ARCHIVES = 
 
 include ../common/Makefile.common

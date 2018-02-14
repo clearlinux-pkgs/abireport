@@ -4,12 +4,12 @@
 #
 Name     : abireport
 Version  : 1.0.5
-Release  : 6
+Release  : 7
 URL      : https://github.com/clearlinux/abireport/releases/download/v1.0.5/abireport-1.0.5.tar.gz
 Source0  : https://github.com/clearlinux/abireport/releases/download/v1.0.5/abireport-1.0.5.tar.gz
 Summary  : No detailed summary available
 Group    : Development/Tools
-License  : Apache-2.0 BSD-3-Clause GPL-2.0 GPL-3.0
+License  : Apache-2.0 BSD-3-Clause
 Requires: abireport-bin
 Requires: abireport-doc
 BuildRequires : go
@@ -39,12 +39,15 @@ doc components for the abireport package.
 %setup -q -n abireport-1.0.5
 
 %build
+export http_proxy=http://127.0.0.1:9/
+export https_proxy=http://127.0.0.1:9/
+export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1487699048
-make V=1  %{?_smp_mflags}
+export SOURCE_DATE_EPOCH=1518587959
+make  %{?_smp_mflags}
 
 %install
-export SOURCE_DATE_EPOCH=1487699048
+export SOURCE_DATE_EPOCH=1518587959
 rm -rf %{buildroot}
 %make_install
 
