@@ -4,7 +4,7 @@
 #
 Name     : abireport
 Version  : 1.0.11
-Release  : 24
+Release  : 25
 URL      : https://github.com/clearlinux/abireport/releases/download/v1.0.11/abireport-1.0.11.tar.xz
 Source0  : https://github.com/clearlinux/abireport/releases/download/v1.0.11/abireport-1.0.11.tar.xz
 Summary  : No detailed summary available
