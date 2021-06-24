@@ -4,7 +4,7 @@
 #
 Name     : abireport
 Version  : 1.0.11
-Release  : 28
+Release  : 29
 URL      : https://github.com/clearlinux/abireport/releases/download/v1.0.11/abireport-1.0.11.tar.xz
 Source0  : https://github.com/clearlinux/abireport/releases/download/v1.0.11/abireport-1.0.11.tar.xz
 Summary  : No detailed summary available
@@ -54,7 +54,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1588293184
+export SOURCE_DATE_EPOCH=1624577898
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto "
 export FCFLAGS="$FFLAGS -fno-lto "
@@ -64,7 +64,7 @@ make  %{?_smp_mflags}
 
 
 %install
-export SOURCE_DATE_EPOCH=1588293184
+export SOURCE_DATE_EPOCH=1624577898
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/abireport
 cp %{_builddir}/abireport-1.0.11/LICENSE %{buildroot}/usr/share/package-licenses/abireport/598f87f072f66e2269dd6919292b2934dbb20492
