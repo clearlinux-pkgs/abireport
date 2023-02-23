@@ -4,7 +4,7 @@
 #
 Name     : abireport
 Version  : 1.0.11
-Release  : 48
+Release  : 49
 URL      : https://github.com/clearlinux/abireport/releases/download/v1.0.11/abireport-1.0.11.tar.xz
 Source0  : https://github.com/clearlinux/abireport/releases/download/v1.0.11/abireport-1.0.11.tar.xz
 Summary  : No detailed summary available
@@ -14,6 +14,9 @@ Requires: abireport-bin = %{version}-%{release}
 Requires: abireport-license = %{version}-%{release}
 Requires: abireport-man = %{version}-%{release}
 BuildRequires : buildreq-golang
+# Suppress stripping binaries
+%define __strip /bin/true
+%define debug_package %{nil}
 
 %description
 abireport
@@ -50,27 +53,30 @@ man components for the abireport package.
 cd %{_builddir}/abireport-1.0.11
 
 %build
+## build_prepend content
+unset CLEAR_DEBUG_TERSE
+## build_prepend end
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1624577898
+export SOURCE_DATE_EPOCH=1677175055
 export GCC_IGNORE_WERROR=1
-export CFLAGS="$CFLAGS -fno-lto "
-export FCFLAGS="$FFLAGS -fno-lto "
-export FFLAGS="$FFLAGS -fno-lto "
-export CXXFLAGS="$CXXFLAGS -fno-lto "
+export CFLAGS="$CFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz "
+export FCFLAGS="$FFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz "
+export FFLAGS="$FFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz "
+export CXXFLAGS="$CXXFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz "
 make  %{?_smp_mflags}
 
 
 %install
-export SOURCE_DATE_EPOCH=1624577898
+export SOURCE_DATE_EPOCH=1677175055
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/abireport
-cp %{_builddir}/abireport-1.0.11/LICENSE %{buildroot}/usr/share/package-licenses/abireport/598f87f072f66e2269dd6919292b2934dbb20492
-cp %{_builddir}/abireport-1.0.11/vendor/github.com/inconshreveable/mousetrap/LICENSE %{buildroot}/usr/share/package-licenses/abireport/9174f93c54ad0022bbb9b445480cfb6b4217226a
-cp %{_builddir}/abireport-1.0.11/vendor/github.com/spf13/cobra/LICENSE.txt %{buildroot}/usr/share/package-licenses/abireport/c7feacb4667f8c63c89e2eeeb9a913bd3ced8ac2
-cp %{_builddir}/abireport-1.0.11/vendor/github.com/spf13/pflag/LICENSE %{buildroot}/usr/share/package-licenses/abireport/b3c86ae465b21f7323059db335158b48187731c7
+cp %{_builddir}/abireport-%{version}/LICENSE %{buildroot}/usr/share/package-licenses/abireport/598f87f072f66e2269dd6919292b2934dbb20492 || :
+cp %{_builddir}/abireport-%{version}/vendor/github.com/inconshreveable/mousetrap/LICENSE %{buildroot}/usr/share/package-licenses/abireport/9174f93c54ad0022bbb9b445480cfb6b4217226a || :
+cp %{_builddir}/abireport-%{version}/vendor/github.com/spf13/cobra/LICENSE.txt %{buildroot}/usr/share/package-licenses/abireport/c7feacb4667f8c63c89e2eeeb9a913bd3ced8ac2 || :
+cp %{_builddir}/abireport-%{version}/vendor/github.com/spf13/pflag/LICENSE %{buildroot}/usr/share/package-licenses/abireport/b3c86ae465b21f7323059db335158b48187731c7 || :
 %make_install
 
 %files
